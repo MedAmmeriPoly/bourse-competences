@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 function Register() {
@@ -22,9 +22,12 @@ function Register() {
   };
 
   return (
-    <div style={{ maxWidth: 400, margin: "20px auto" }}>
-      <h2>Inscription</h2>
-      <form onSubmit={handleSubmit}>
+    <div className="auth-wrapper">
+      <form onSubmit={handleSubmit} className="panel auth-card form-grid">
+        <div>
+          <h2>Rejoindre le club</h2>
+          <p className="auth-subtitle">Créez votre compte en quelques secondes.</p>
+        </div>
         <input
           placeholder="Nom"
           value={nom}
@@ -47,8 +50,11 @@ function Register() {
           minLength={6}
         />
         <button type="submit">Créer mon compte</button>
+        {erreur && <p className="error">{erreur}</p>}
+        <p className="auth-footer">
+          Déjà membre ? <Link to="/login">Connectez-vous</Link>
+        </p>
       </form>
-      {erreur && <p style={{ color: "red" }}>{erreur}</p>}
     </div>
   );
 }

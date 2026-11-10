@@ -11,20 +11,28 @@ function Navbar() {
   };
 
   return (
-    <nav style={{ display: "flex", gap: 16, padding: 16, borderBottom: "1px solid #ddd" }}>
-      <Link to="/">Bourse de compétences</Link>
-      <div style={{ marginLeft: "auto", display: "flex", gap: 12 }}>
-        {user ? (
-          <>
-            <span>Bonjour, {user.nom}</span>
-            <button onClick={handleLogout}>Déconnexion</button>
-          </>
-        ) : (
-          <>
-            <Link to="/login">Connexion</Link>
-            <Link to="/register">Inscription</Link>
-          </>
-        )}
+    <nav className="navbar">
+      <div className="container navbar-inner">
+        <Link to="/" className="logo">
+          Bourse de <span>compétences</span>
+        </Link>
+
+        <div className="nav-actions">
+          {user ? (
+            <div className="nav-user">
+              <div className="avatar">{user.nom.charAt(0).toUpperCase()}</div>
+              <span>{user.nom}</span>
+              <button className="btn-outline" onClick={handleLogout}>
+                Déconnexion
+              </button>
+            </div>
+          ) : (
+            <>
+              <Link to="/login" className="nav-link">Connexion</Link>
+              <Link to="/register" className="btn-primary-link">Inscription</Link>
+            </>
+          )}
+        </div>
       </div>
     </nav>
   );

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 function Login() {
@@ -21,9 +21,12 @@ function Login() {
   };
 
   return (
-    <div style={{ maxWidth: 400, margin: "20px auto" }}>
-      <h2>Connexion</h2>
-      <form onSubmit={handleSubmit}>
+    <div className="auth-wrapper">
+      <form onSubmit={handleSubmit} className="panel auth-card form-grid">
+        <div>
+          <h2>Bon retour 👋</h2>
+          <p className="auth-subtitle">Connectez-vous pour proposer des ateliers.</p>
+        </div>
         <input
           type="email"
           placeholder="Email"
@@ -39,8 +42,11 @@ function Login() {
           required
         />
         <button type="submit">Se connecter</button>
+        {erreur && <p className="error">{erreur}</p>}
+        <p className="auth-footer">
+          Pas encore de compte ? <Link to="/register">Inscrivez-vous</Link>
+        </p>
       </form>
-      {erreur && <p style={{ color: "red" }}>{erreur}</p>}
     </div>
   );
 }

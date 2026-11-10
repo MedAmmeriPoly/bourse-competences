@@ -40,23 +40,33 @@ function Home() {
 
   return (
     <div>
-      <h2>Ateliers proposés</h2>
+      <section className="hero">
+        <h1>
+          Partage ce que tu sais, <span>apprends le reste</span>
+        </h1>
+        <p>
+          Des mini-ateliers proposés par les membres du club : une heure, une compétence, une
+          rencontre.
+        </p>
+      </section>
 
       {user ? (
         <AtelierForm onAjout={ajouterAtelier} />
       ) : (
-        <p>
-          <em>Connectez-vous pour proposer un atelier ou laisser un feedback.</em>
-        </p>
+        <p className="info">Connectez-vous pour proposer un atelier ou laisser un feedback.</p>
       )}
 
-      {chargement && <p>Chargement...</p>}
-      {erreur && <p style={{ color: "red" }}>{erreur}</p>}
-      {!chargement && ateliers.length === 0 && <p>Aucun atelier pour le moment.</p>}
+      <h2 className="section-title">Ateliers proposés</h2>
 
-      {ateliers.map((atelier) => (
-        <AtelierCard key={atelier._id} atelier={atelier} onDelete={supprimerAtelier} />
-      ))}
+      {chargement && <p className="info">Chargement...</p>}
+      {erreur && <p className="error">{erreur}</p>}
+      {!chargement && ateliers.length === 0 && <p className="empty">Aucun atelier pour le moment.</p>}
+
+      <div className="grid">
+        {ateliers.map((atelier) => (
+          <AtelierCard key={atelier._id} atelier={atelier} onDelete={supprimerAtelier} />
+        ))}
+      </div>
     </div>
   );
 }

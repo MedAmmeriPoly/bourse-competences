@@ -24,7 +24,7 @@ function AtelierForm({ onAjout }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ display: "grid", gap: 8, maxWidth: 400 }}>
+    <form onSubmit={handleSubmit} className="panel form-grid">
       <h3>Proposer un atelier</h3>
       <input
         placeholder="Titre (ex : Git en 1h)"
@@ -50,7 +50,7 @@ function AtelierForm({ onAjout }) {
         required
       />
       <button type="submit">Publier</button>
-      {erreur && <p style={{ color: "red" }}>{erreur}</p>}
+      {erreur && <p className="error">{erreur}</p>}
     </form>
   );
 }
